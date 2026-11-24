@@ -1,4 +1,21 @@
+# Self-Assessment
+#
+# 1. Yes. The charts are clear enough that someone could identify the key finding quickly.
+# The titles and labels make the comparisons easy to understand, and the custom return-rate
+# chart is sorted from highest to lowest, which makes the main result obvious.
+#
+# 2. South generated $605,454.95 in revenue, about 28.61% above the average regional revenue.
+# December generated $199,684.11 in revenue, about 26.48% above the average monthly revenue.
+# The mean order size was about $409.32, while the median was $144.99, showing a strongly
+# right-skewed distribution in which a small number of large orders pull the mean upward.
+#
+# 3. The most difficult part was deciding how to interpret the data rather than just creating
+# the charts. I had to think carefully about what negative revenue represented and how to turn
+# that observation into a meaningful business question about return rates.
+
+
 # Exercise 1 - Q1: Revenue by region
+# Business question: Which region generates the most total revenue?
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -30,6 +47,7 @@ plt.close()
 # South generated the highest total revenue at $605,454.95.
 
 # Exercise 2 - Q2: Monthly revenue trend
+# Business question: How does total revenue change across the 12 months?
 
 df["month"] = df["order_date"].dt.month
 
@@ -58,6 +76,7 @@ plt.close()
 # December had the highest revenue at $199,684.11, about 26.48% above the monthly average.
 
 # Exercise 3 - Q3: Order size distribution
+# Business question: What does the distribution of order sizes look like?
 
 mean_order = df["revenue"].mean()
 median_order = df["revenue"].median()
@@ -75,8 +94,8 @@ plt.savefig("charts/q3_order_distribution.png")
 plt.close()
 # The order-size distribution is right-skewed, so a few large orders pull the mean above the typical order size; the median is more representative for a business analyst.
 
-# Exercise 4 - Q4: Which product categories have the highest return rates?
-# A bar chart is appropriate because it makes it easy to compare return rates across categories.
+# Exercise 4 - Q4: Custom business question
+# Business question: Which product categories have the highest return rates?
 
 df["is_return"] = df["revenue"] < 0
 
@@ -127,4 +146,7 @@ region_summary["total_revenue"] / region_summary["order_count"]
 
 print(region_summary)
 # South has the most orders with 1,465.
-# North has the highest average order value at about $457.00.
+# North has the highest average order value at about $454.00.
+
+# Exercise 7 - Script tidy-up
+# Added a clear section heading and business question before each chart block.
